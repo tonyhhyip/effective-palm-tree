@@ -1,6 +1,6 @@
 <?php
 /**
- * Laravel Rich
+ * Laravel EnRich
  *
  * Copyright (C) Tony Yip 2016.
  *
@@ -31,11 +31,13 @@
  * @license  http://opensource.org/licenses/MIT MIT License
  */
 
-namespace Laravel\Rich\Controller;
+namespace Laravel\Rich\Test;
 
-use Illuminate\Routing\Controller as BaseController;
 
-abstract class Controller extends BaseController
+class FunctionsTest extends \PHPUnit_Framework_TestCase
 {
-
+    public function testViewer()
+    {
+        $this->assertInstanceOf(\Closure::class, viewer('testpage'));
+    }
 }

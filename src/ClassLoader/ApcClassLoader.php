@@ -7,7 +7,7 @@
  * @license http://opensource.org/licenses/MIT MIT License.
  */
 
-namespace Elearn\Foundation\ClassLoader;
+namespace Laravel\Rich\ClassLoader;
 
 
 /**
@@ -58,5 +58,15 @@ class ApcClassLoader extends AbstractClassLoader
         }
 
         return $file;
+    }
+
+    /**
+     * Past the rest of the part to the wrapped classloader.
+     */
+    public function __call($method, $arguments)
+    {
+    	if (!method_exists($this->instance, $method))
+    		throw new \RuntimeException("$method us not");
+    	return call_user_func_array([$this->instance, $method], $arguments);
     }
 }

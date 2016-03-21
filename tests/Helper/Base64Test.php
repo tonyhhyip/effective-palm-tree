@@ -8,10 +8,10 @@
  * @license  http://opensource.org/licenses/GPL-3.0 GNU General Public License
  */
 
-namespace Elearn\Foundation\Test\Helper;
+namespace Laravel\Rich\Test\Helper;
 
 
-use Elearn\Foundation\Helper\Base64;
+use Laravel\Rich\Helper\Base64;
 
 class Base64Test extends \PHPUnit_Framework_TestCase
 {

@@ -1,14 +1,14 @@
 <?php
 /**
- * HHVM
+ * build for HHVM
  *
- * Copyright (C) Tony Yip 2015.
+ * Copyright (C) Tony Yip 2016.
  *
  * @author   Tony Yip <tony@opensource.hk>
- * @license  http://opensource.org/licenses/GPL-3.0 GNU General Public License
+ * @license  http://opensource.org/licenses/MIT MIT
  */
 
-namespace Elearn\Foundation\Helper;
+namespace Laravel\Rich\Helper;
 
 
 abstract class Json

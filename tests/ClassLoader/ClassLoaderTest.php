@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Elearn\Foundation\Test\ClassLoader;
+namespace Laravel\Rich\Test\ClassLoader;
 
-use Elearn\Foundation\ClassLoader\ClassLoader;
+use Laravel\Rich\ClassLoader\ClassLoader;
 
 class ClassLoaderTest extends \PHPUnit_Framework_TestCase
 {

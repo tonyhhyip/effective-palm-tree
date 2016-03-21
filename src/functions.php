@@ -1,6 +1,6 @@
 <?php
 /**
- * Laravel Rich
+ * Laravel EnRich
  *
  * Copyright (C) Tony Yip 2016.
  *
@@ -31,11 +31,10 @@
  * @license  http://opensource.org/licenses/MIT MIT License
  */
 
-namespace Laravel\Rich\Controller;
-
-use Illuminate\Routing\Controller as BaseController;
-
-abstract class Controller extends BaseController
-{
-
+if (!function_exists('viewer')) {
+    function viewer($view) {
+        return function () use($view) {
+            return view($view);
+        };
+    }
 }

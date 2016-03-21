@@ -1,0 +1,10 @@
+{
+  "name": "laravel-enrich",
+  "private": true,
+  "version": "0.0.1",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-phpunit": "^0.14.0",
+    "gulp-watch": "^4.3.5"
+  }
+}

@@ -11,7 +11,7 @@
 namespace Elearn\Foundation\Test\Helper;
 
 
-use Elearn\Foundation\Helper\Json;
+use Laravel\Rich\Helper\Json;
 
 class JsonTest extends \PHPUnit_Framework_TestCase
 {

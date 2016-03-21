@@ -8,7 +8,7 @@
  * @license  http://opensource.org/licenses/GPL-3.0 GNU General Public License
  */
 
-namespace Elearn\Foundation\Middleware;
+namespace Laravel\Rich\Middleware;
 
 use Closure;
 use Illuminate\Foundation\Application;

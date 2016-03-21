@@ -11,7 +11,7 @@
 
 namespace Elearn\Foundation\Test\ClassLoader;
 
-use Elearn\Foundation\ClassLoader\Psr4ClassLoader;
+use Laravel\Rich\ClassLoader\Psr4ClassLoader;
 
 class Psr4ClassLoaderTest extends \PHPUnit_Framework_TestCase
 {

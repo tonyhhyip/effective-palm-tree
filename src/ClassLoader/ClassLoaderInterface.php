@@ -7,7 +7,7 @@
  * @license http://opensource.org/licenses/MIT MIT License.
  */
 
-namespace Elearn\Foundation\ClassLoader;
+namespace Laravel\Rich\ClassLoader;
 
 /**
  * This is the basic interface of ClassLoader.

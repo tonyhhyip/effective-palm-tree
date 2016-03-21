@@ -11,7 +11,7 @@
 namespace Elearn\Foundation\Test\Helper;
 
 
-use Elearn\Foundation\Helper\Math;
+use Laravel\Rich\Helper\Math;
 
 class MathTest extends \PHPUnit_Framework_TestCase
 {

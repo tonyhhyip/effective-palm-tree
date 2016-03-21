@@ -21,11 +21,14 @@
   "autoload": {
     "psr-4": {
       "Laravel\\Rich\\": "src/"
-    }
+    },
+    "files": [
+      "src/functions.php"
+    ]
   },
   "autoload-dev": {
       "psr-4": {
-          "Laravel\\Rich\\Tests\\": "tests/"
+          "Laravel\\Rich\\Test\\": "tests/"
       }
   },
   "extra": {

@@ -1,27 +1,61 @@
 <?hh
 /**
- * This is a file of elearn-foundation.
+ * Laravel Rich
  *
- * (c) Tony Yip <tony@opensource.hk>
- * @license http://opensource.org/licenses/MIT MIT License.
+ * Copyright (C) Tony Yip 2016.
+ *
+ * Permission is hereby granted, free of charge,
+ * to any person obtaining a copy of this software
+ * and associated documentation files (the "Software"),
+ * to deal in the Software without restriction,
+ * including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons
+ * to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice
+ * shall be included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS",
+ * WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * @category Laravel EnRich
+ * @author   Tony Yip <tony@opensource.hk>
+ * @license  http://opensource.org/licenses/MIT MIT License
  */
 
-namespace Elearn\Foundation\ClassLoader;
+namespace Laravel\Rich\ClassLoader;
+
+use InvalidArgumentException;
 
 class ComposerClassLoader extends AbstractClassLoader
 {
-
-	private array $fallbackDirsPsr4 = [];
-	private array $fallbackDirsPsr0 = [];
+	private Vector<string> $fallbackDirsPsr4;
+	private Vector<string> $fallbackDirsPsr0;
 
 	private array $prefixesPsr0 = [];
 	private array $prefixLengthsPsr4 = [];
-	private array $prefixDirsPsr4 = [];
+	private Map<string, Vector<string>> $prefixDirsPsr4;
 
-	private array $classMap = [];
+	private Map<string, ?string> $classMap;
 
 	private bool $classMapAuthoritative = false;
 	private bool $useIncludePath = false;
+
+    public function __construct()
+    {
+        $this->fallbackDirsPsr4 = new Vector([]);
+        $this->fallbackDirsPsr0 = new Vector([]);
+        $this->prefixDirsPsr4 = new Map([]);
+        $this->classMap = new Map([]);
+    }
 
 	/**
      * Registers a set of PSR-0 directories for a given prefix,
@@ -33,7 +67,7 @@ class ComposerClassLoader extends AbstractClassLoader
     public function set(string $prefix, mixed $paths)
     {
         if (!$prefix) {
-            $this->fallbackDirsPsr0 = (array)$paths;
+            $this->fallbackDirsPsr0 = new Vector((array)$paths);
         } else {
             $this->prefixesPsr0[$prefix[0]][$prefix] = (array) $paths;
         }
@@ -46,19 +80,19 @@ class ComposerClassLoader extends AbstractClassLoader
      * @param string       $prefix The prefix/namespace, with trailing '\\'
      * @param array|string $paths  The PSR-4 base directories
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function setPsr4(string $prefix, mixed $paths)
     {
         if (!$prefix) {
-            $this->fallbackDirsPsr4 = (array)$paths;
+            $this->fallbackDirsPsr4 = new Vector((array)$paths);
         } else {
             $length = strlen($prefix);
             if ('\\' !== $prefix[$length - 1]) {
-                throw new \InvalidArgumentException("A non-empty PSR-4 prefix must end with a namespace separator.");
+                throw new InvalidArgumentException("A non-empty PSR-4 prefix must end with a namespace separator.");
             }
             $this->prefixLengthsPsr4[$prefix[0]][$prefix] = $length;
-            $this->prefixDirsPsr4[$prefix] = (array) $paths;
+            $this->prefixDirsPsr4[$prefix] = new Vector((array) $paths);
         }
     }
 
@@ -68,9 +102,9 @@ class ComposerClassLoader extends AbstractClassLoader
     public function addClassMap(array $classMap)
     {
         if ($this->classMap) {
-            $this->classMap = array_merge($this->classMap, $classMap);
+            $this->classMap->addAll($classMap);
         } else {
-            $this->classMap = $classMap;
+            $this->classMap = new Map($classMap);
         }
     }
 
@@ -92,11 +126,6 @@ class ComposerClassLoader extends AbstractClassLoader
         }
 
         $file = $this->findFileWithExtension($class, '.php');
-
-        // Search for Hack files if we are running on HHVM
-        if ($file === null && defined('HHVM_VERSION')) {
-            $file = $this->findFileWithExtension($class, '.hh');
-        }
 
         if ($file === null) {
             // Remember that this class does not exist.

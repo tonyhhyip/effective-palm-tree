@@ -7,7 +7,7 @@
  * @license http://opensource.org/licenses/MIT MIT License.
  */
 
-namespace Elearn\Foundation\ClassLoader;
+namespace Laravel\Rich\ClassLoader;
 
 
 /**
@@ -16,7 +16,7 @@ namespace Elearn\Foundation\ClassLoader;
 class MapClassLoader extends AbstractClassLoader
 {
 
-	private ImmMap<string, string>$map;
+	private Map<string, string>$map;
 
 	/**
 	 * Constructor
@@ -25,7 +25,7 @@ class MapClassLoader extends AbstractClassLoader
 	 */
 	public function __construct(array $map)
 	{
-		$this->map = new ImmMap($map);
+		$this->map = new Map($map);
 	}
 
 	public function findFile(string $class): ?string

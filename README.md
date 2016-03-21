@@ -1,6 +1,6 @@
-#Elearn Foundation
+# Laravel Enrich
 
-[![Build Status](https://travis-ci.org/spyc/elearn-foundation.svg?branch=master)](https://travis-ci.org/spyc/elearn-foundation)
+[![Build Status](https://travis-ci.org/tonyhhyip/laravel-enrich.svg?branch=master)](https://travis-ci.org/tonyhhyip/laravel-enrich)
 
-Basic Class and Helpers for Elearn Service.
+Add Enrichment of Laravel, it is migrated from spyc/elearn-foundation
 Licensed under [MIT License](LICENSE.md)

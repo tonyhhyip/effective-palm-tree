@@ -15,7 +15,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class Localization
+class Localization implements MiddlewareInterface
 {
     /**
      * @var Application

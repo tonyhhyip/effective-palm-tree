@@ -31,7 +31,7 @@
  * @license  http://opensource.org/licenses/MIT MIT License
  */
 
-namespace Laravel\Rich\Session;
+namespace Laravel\Rich\Providers;
 
 
 class SessionServiceProvider

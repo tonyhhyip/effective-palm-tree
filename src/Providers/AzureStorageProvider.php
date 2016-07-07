@@ -1,6 +1,6 @@
 <?php
 /**
- * Laravel Rich
+ * Laravel EnRich
  *
  * Copyright (C) Tony Yip 2016.
  *
@@ -31,11 +31,32 @@
  * @license  http://opensource.org/licenses/MIT MIT License
  */
 
-namespace Laravel\Rich\Controller;
+namespace Laravel\Rich\Providers;
 
-use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\ServiceProvider;
+use WindowsAzure\Common\ServicesBuilder;
+use League\Flysystem\Filesystem;
+use League\Flysystem\Azure\AzureAdapter;
 
-abstract class Controller extends BaseController
+
+class AzureStorageProvider extends ServiceProvider
 {
+    public function boot()
+    {
+        $this->app['filesystem']->extend(function () {
+            $config = $this->app['config']['filesystem.azure'];
+            $endpoint = sprintf(
+                'DefaultEndpointsProtocol=https;AccountName=%s;AccountKey=%s',
+                $config['account'],
+                $config['key']
+            );
+            $proxy = ServicesBuilder::getInstance()->createBlobService($endpoint);
+            return new Filesystem(new AzureAdapter($proxy, $config['container']));
+        });
+    }
 
+    public function register()
+    {
+
+    }
 }

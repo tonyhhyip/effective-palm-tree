@@ -31,7 +31,7 @@
  * @license  http://opensource.org/licenses/MIT MIT License
  */
 
-namespace Laravel\Rich\Views;
+namespace Laravel\Rich\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
